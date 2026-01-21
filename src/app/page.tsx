@@ -73,6 +73,72 @@ const services = [
   },
 ];
 
+// Statistics data
+const statistics = [
+  { number: "15+", label: "Jahre Erfahrung", description: "in Architektur und Bauwesen" },
+  { number: "50+", label: "Projekte", description: "erfolgreich realisiert" },
+  { number: "100%", label: "Engagement", description: "für Ihre Vision" },
+  { number: "5", label: "Leistungsbereiche", description: "aus einer Hand" },
+];
+
+// Testimonials data
+const testimonials = [
+  {
+    quote: "Die Zusammenarbeit mit Peer Höpli war von Anfang an professionell und unkompliziert. Unser Traumhaus wurde genau so realisiert, wie wir es uns vorgestellt haben.",
+    author: "Familie Müller",
+    project: "Einfamilienhaus Winterthur",
+    rating: 5,
+  },
+  {
+    quote: "Kompetente Beratung, kreative Lösungen und eine zuverlässige Umsetzung. Wir können Peer Höpli Architektur uneingeschränkt empfehlen.",
+    author: "Thomas & Sandra Weber",
+    project: "Umbau Altbau Schaffhausen",
+    rating: 5,
+  },
+  {
+    quote: "Besonders beeindruckt hat uns die Liebe zum Detail und das Verständnis für unsere Bedürfnisse. Das Ergebnis übertrifft unsere Erwartungen.",
+    author: "Dr. Martin Schneider",
+    project: "Praxisumbau Winterthur",
+    rating: 5,
+  },
+];
+
+// Process steps
+const processSteps = [
+  {
+    step: "01",
+    title: "Erstgespräch",
+    description: "Wir lernen Sie und Ihre Wünsche kennen. In einem unverbindlichen Gespräch besprechen wir Ihre Ideen, Anforderungen und das Budget.",
+    icon: "💬",
+  },
+  {
+    step: "02",
+    title: "Konzept & Entwurf",
+    description: "Basierend auf Ihren Vorgaben entwickeln wir erste Entwürfe und Konzepte. Gemeinsam verfeinern wir die Planung bis zur optimalen Lösung.",
+    icon: "✏️",
+  },
+  {
+    step: "03",
+    title: "Planung & Bewilligung",
+    description: "Wir erstellen alle notwendigen Pläne und begleiten Sie durch das Bewilligungsverfahren. Dabei koordinieren wir alle Beteiligten.",
+    icon: "📋",
+  },
+  {
+    step: "04",
+    title: "Realisierung",
+    description: "Mit professioneller Bauleitung setzen wir Ihr Projekt um. Wir überwachen Qualität, Termine und Kosten bis zur Schlüsselübergabe.",
+    icon: "🏗️",
+  },
+];
+
+// Partners/Certifications
+const certifications = [
+  { name: "Dipl. Techniker HF Hochbau", icon: "🎓" },
+  { name: "SIA Normen", icon: "📐" },
+  { name: "Minergie Partner", icon: "🌿" },
+  { name: "Brandschutz VKF", icon: "🔥" },
+];
+
 export default function Home() {
   return (
     <>
@@ -84,6 +150,34 @@ export default function Home() {
         ctaText="Projekt starten"
         ctaLink="/kontakt"
       />
+
+      {/* Statistics Section */}
+      <section className="py-16 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {statistics.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="text-4xl md:text-5xl font-bold text-amber-500 mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-lg font-semibold text-white mb-1">
+                  {stat.label}
+                </div>
+                <div className="text-sm text-gray-400">
+                  {stat.description}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* About Preview Section */}
       <section className="py-24 bg-white">
@@ -157,6 +251,58 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Process Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">
+              Unser Prozess
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4 mb-6">
+              So arbeiten wir
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Von der ersten Idee bis zur Schlüsselübergabe – wir begleiten Sie durch alle Phasen Ihres Projekts.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative"
+              >
+                <div className="bg-white rounded-2xl p-8 h-full shadow-sm hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-4xl mb-4">{step.icon}</div>
+                  <div className="text-amber-500 font-bold text-sm mb-2">
+                    Schritt {step.step}
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-600">
+                    {step.description}
+                  </p>
+                </div>
+                {/* Connector line */}
+                {index < processSteps.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 w-8 h-0.5 bg-amber-300" />
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Featured Projects Section */}
       <section className="py-24 bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
@@ -206,6 +352,98 @@ export default function Home() {
       {/* Services Section */}
       <ServicesSection services={services} />
 
+      {/* Testimonials Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">
+              Referenzen
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4 mb-6">
+              Was unsere Kunden sagen
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow duration-300"
+              >
+                {/* Stars */}
+                <div className="flex gap-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className="w-5 h-5 text-amber-500"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <blockquote className="text-gray-700 mb-6 leading-relaxed">
+                  "{testimonial.quote}"
+                </blockquote>
+                <div className="border-t border-gray-100 pt-4">
+                  <div className="font-semibold text-gray-900">
+                    {testimonial.author}
+                  </div>
+                  <div className="text-sm text-amber-600">
+                    {testimonial.project}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section className="py-16 bg-white border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">
+              Qualifikationen
+            </span>
+            <h3 className="text-2xl font-bold text-gray-900 mt-2">
+              Zertifizierungen & Standards
+            </h3>
+          </motion.div>
+
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+            {certifications.map((cert, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className="flex items-center gap-3 bg-gray-50 px-6 py-4 rounded-xl"
+              >
+                <span className="text-2xl">{cert.icon}</span>
+                <span className="font-medium text-gray-700">{cert.name}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-24 bg-amber-500">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -221,25 +459,36 @@ export default function Home() {
               Lassen Sie uns gemeinsam Ihre Vision verwirklichen. Kontaktieren Sie
               uns für ein unverbindliches Erstgespräch.
             </p>
-            <Link
-              href="/kontakt"
-              className="inline-flex items-center gap-2 bg-black hover:bg-gray-900 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl"
-            >
-              Kontakt aufnehmen
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/kontakt"
+                className="inline-flex items-center justify-center gap-2 bg-black hover:bg-gray-900 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:shadow-xl"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </Link>
+                Kontakt aufnehmen
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
+              </Link>
+              <a
+                href="tel:+41774525831"
+                className="inline-flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 text-black font-semibold px-8 py-4 rounded-full transition-all duration-300"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                +41 77 452 58 31
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>

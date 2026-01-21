@@ -47,7 +47,7 @@ export default config({
           }),
           {
             label: 'Galerie',
-            itemLabel: (props) => `Bild ${props.key + 1}`,
+            itemLabel: (props: any) => 'Galerie Bild',
           }
         ),
         description: fields.markdoc({
@@ -63,7 +63,7 @@ export default config({
           fields.text({ label: 'Highlight' }),
           {
             label: 'Projekt Highlights',
-            itemLabel: (props) => props.value || 'Neues Highlight',
+            itemLabel: (props: any) => props.value || 'Neues Highlight',
           }
         ),
         featured: fields.checkbox({
@@ -109,7 +109,7 @@ export default config({
           fields.text({ label: 'Punkt' }),
           {
             label: 'Leistungspunkte',
-            itemLabel: (props) => props.value || 'Neuer Punkt',
+            itemLabel: (props: any) => props.value || 'Neuer Punkt',
           }
         ),
         order: fields.integer({
@@ -186,7 +186,7 @@ export default config({
           }),
           {
             label: 'Werte',
-            itemLabel: (props) => props.fields.title.value || 'Neuer Wert',
+            itemLabel: (props: any) => props.fields.title.value || 'Neuer Wert',
           }
         ),
       },

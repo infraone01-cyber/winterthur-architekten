@@ -6,16 +6,19 @@ import { motion } from "framer-motion";
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
     const form = e.currentTarget;
     const formData = new FormData(form);
+    formData.append("form-name", "contact");
 
     try {
-      const response = await fetch("/", {
+      const response = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData as any).toString(),
@@ -24,9 +27,12 @@ export default function ContactForm() {
       if (response.ok) {
         setIsSubmitted(true);
         form.reset();
+      } else {
+        setError("Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.");
       }
-    } catch (error) {
-      console.error("Form submission error:", error);
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setError("Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.");
     } finally {
       setIsSubmitting(false);
     }
@@ -62,18 +68,21 @@ export default function ContactForm() {
     <form
       name="contact"
       method="POST"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
       onSubmit={handleSubmit}
       className="space-y-6"
     >
-      {/* Netlify Form Detection */}
-      <input type="hidden" name="form-name" value="contact" />
+      {/* Honeypot field for spam protection */}
       <p className="hidden">
         <label>
           Don&apos;t fill this out: <input name="bot-field" />
         </label>
       </p>
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-xl p-4 text-red-700">
+          {error}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Name */}
@@ -156,7 +165,7 @@ export default function ContactForm() {
         />
       </div>
 
-      {/* Submit Button - without SVG arrow */}
+      {/* Submit Button */}
       <motion.button
         type="submit"
         disabled={isSubmitting}
